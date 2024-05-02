@@ -4,7 +4,7 @@ using System;
 
 namespace UnscrambleGame {
     
-    class Assignment
+    class Unscramble
     {
         static void Main()
         {
@@ -23,7 +23,8 @@ namespace UnscrambleGame {
                 Console.WriteLine($"Level {count + 1} / {WordDatabase.wordListLength}");
                 shuffled = WordDatabase.pickRandomShuffledWord();
                 Console.WriteLine($"Your word is: {shuffled}");
-            // Asks user for input
+
+            // re-asks user for input
             RETRY:
                 Console.WriteLine("Your answer: ");
                 answer = Console.ReadLine();
@@ -264,7 +265,7 @@ class WordDatabase
     /// <summary>
     /// Takes in a string and shuffles its characters
     /// </summary>
-    /// <param name="word"></param>
+    /// <param name="word">Selected word to be shuffled</param>
     /// <returns>Shuffled String</returns>
     private static String ShuffleCurrentWord(String word)
     {
@@ -284,7 +285,7 @@ class WordDatabase
     /// <summary>
     /// Verifies user inputed word against actual word
     /// </summary>
-    /// <param name="word"></param>
+    /// <param name="word">User input to be verified</param>
     /// <returns>True if matches else false</returns>
 
     public static Boolean verifyUnscrambledWord(String word)
@@ -292,7 +293,13 @@ class WordDatabase
         if (word == currentWord) return true;
         return false;
     }
+
     // For Assignment 2:  Either playerRank() or playerRank2() can be used to achieve the same result.
+    /// <summary>
+    /// Receives user score and grades the user's skill based on the Score.
+    /// </summary>
+    /// <param name="score">User's score from the game</param>
+    /// <returns>User skill Level</returns>
     public static String playerRank(int score)
     {
         int playerScore = calculatePercent(score, wordListLength);
@@ -301,7 +308,7 @@ class WordDatabase
         switch (playerScore)
         {
             case int n when (n == 0):
-                playerRank = "Lozer";
+                playerRank = "Loser";
                 break;
             case int n when (n <= 10):
                 playerRank = "Novice";
